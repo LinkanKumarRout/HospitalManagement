@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    {% include 'cdnlines.html' %}
+    <title>NTH Patient</title>
+</head>
+<style>
+    .na{
+        height: 80px;
+    }
+    .an{
+        font-size: 35px;
+    }
+    .content{
+        margin-top: 100px;
+    }
+    .heading{
+        font-family: sans-serif;
+    }
+    body{
+        background-image: url('static/Images/pexels.jpg');
+        background-size: cover;
+        background-repeat: no-repeat;
+    }
+</style>
+<body>
+    <!-- navbar -->
+    <div class="container-fluid">
+        <div class="row bg-primary text-white na">
+            <div class="col-md-2">
+                    <h5 class="mt-4">Hospital Management</h5>
+            </div>
+            <div class="offset-md-6 col-md-3 text-right">
+                <h5 class="mt-4">Hello <b>{{user}}</b>,</h5>
+            </div>
+            <div class="col-md-1 mt-4">
+                <a href="{% url 'p_logout' %}" class="text-white"><h5>Logout</h5></a>
+            </div>
+        </div>
+        <h2 class="text-center display-3 heading">Welcome to NTH Hospital</h2>
+    </div>
+    <div class="container-fluid">
+        <div class="row content">
+            <div class="offset-md-2 col-md-4">
+                <a href="{% url 'appointment' %}" class="an btn btn-primary btn-md">Take Appointment</a>
+            </div>
+            <div class="ml-5 col-md-5">
+                <a href="{% url 'checkstatus' %}" class="an btn btn-primary btn-sm">Check Appointment Status</a>
+            </div>
+        </div>
+    </div>
+    <br><br><br><br><br><br>
+    {% include 'footer.html' %}
+</body>
+</html>

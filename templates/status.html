@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    {% include 'cdnlines.html' %}
+    <title>Appointment Status</title>
+</head>
+<style>
+    .con{
+        margin-top: 250px;
+        border: 3px solid white;
+        box-shadow: 0 0 10px black;
+        border-radius: 10%;
+        padding: 20px;
+        background-color: rgba(0, 89, 255, 0.5);
+        color: white;
+    }
+    h3{
+        font-family: 'Courier New', Courier, monospace;
+        text-shadow: 0 0 15px black;
+    }
+    body{
+        background-image: url('static/Images/hospital-corridor.avif');
+        background-repeat: no-repeat;
+        background-size: cover;
+    }
+</style>
+<body>
+    <div class="container-fluid">
+        <div class="offset-md-3 col-md-6 con">
+            {% if status == '1' %}
+            <div class="text-center">
+                <h3>Your Appointment has been Approved</h3>
+                <h3>Please visit our Hospital on</h3>
+                <h3>{{date}}</h3>
+            </div>
+            {% elif status == '-1' %}
+            <div class="text-center">
+                <h3>Your Appointment has been Rejected</h3>
+                <h3>Please book appointment Again...</h3>
+            </div>
+            {% else %}
+            <div class="text-center">
+                <h3>Our Team is reviewing your Appointment</h3>
+                <h3>We will reach you soon...</h3>
+                <h3>Have Patience. Thank You</h3>
+            </div>
+            {% endif %}
+            <div class="text-center">
+                <a href="{% url 'patient_dashboard' %}" class="btn btn-primary btn-md">Go Back</a>
+            </div>
+        </div>
+    </div>
+</body>
+</html>

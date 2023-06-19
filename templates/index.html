@@ -1,0 +1,88 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    {% include 'cdnlines.html' %}
+    <title>Home</title>
+</head>
+<style>
+    #admin, #patient{
+        border: 2px solid white;
+        box-shadow: 0 0 10px black;
+        width: 304px;
+    }
+    #head{
+        margin-top: 80px;
+        margin-bottom: 30px;
+    }
+    .heading1{
+        text-shadow: 0 0 10px rgb(0, 0, 255);
+        color: black;
+    }
+    .name{
+        margin-left: 110px;
+        margin-top: 10px;
+    }
+    .link{
+        font-size: 20px;
+    }
+    .jumbotron {
+      margin-top: 0px;
+      margin-bottom: 0px;
+      background-image: url('{% static "Images/bg.jpg" %}');
+      background-size: cover;
+      background-repeat: no-repeat;
+    }
+
+    .jumbotron h5,
+    h3 {
+      text-align: center;
+    }
+    .glow {
+      font-size: 50px;
+      color: white;
+      text-align: center;
+      -webkit-animation: glow 1s ease-in-out infinite alternate;
+      -moz-animation: glow 1s ease-in-out infinite alternate;
+      animation: glow 1s ease-in-out infinite alternate;
+    }
+
+    @keyframes glow {
+      from {
+        text-shadow: 0 0 10px #eeeeee, 0 0 20px #000000, 0 0 30px #000000, 0 0 40px #000000, 0 0 50px #9554b3, 0 0 60px #9554b3, 0 0 70px #9554b3;
+      }
+
+      to {
+        text-shadow: 0 0 20px #eeeeee, 0 0 30px #ff4da6, 0 0 40px #ff4da6, 0 0 50px #ff4da6, 0 0 60px #ff4da6, 0 0 70px #ff4da6, 0 0 80px #ff4da6;
+      }
+    }
+    #emer{
+        font-family: 'Times New Roman', Times, serif;
+    }
+</style>
+<body>
+    <!-- Navbar -->
+    {% include 'navbar.html' %}
+    <!-- body -->
+    <div class="container-fluid">
+        <h2 class="text-center display-3 heading1" id="head">NTH HOSPITAL</h2>
+        <div class="jumbotron" style="margin-bottom: 0px;margin-top: 0px;">
+            <br>
+            <h5 class="display-4 glow">You'll Love the Way We Care for You</h5>
+            <br><br><br><br><br>
+            <p>
+            <h3 id="emer">Emergency ?</h3>
+          
+            <p class="lead">
+              <a class="btn btn-primary btn-lg" href="{% url 'patient' %}" role="button">Take Appointment</a>
+            </p>
+            <br><br>
+        </div>
+    </div>
+    <br><br><br>
+    {% include 'admin_patient_card.html' %}
+    <br><br>
+    <!-- footer -->
+    {% include 'footer.html' %}
+</body>
+</html>

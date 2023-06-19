@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    {% include 'cdnlines.html' %}
+    <title>NTH Admin</title>
+</head>
+<style>
+    .na{
+        height: 80px;
+    }
+    body{
+        background-image: url('static/Images/admin-bg.jpg');
+        background-repeat: no-repeat;
+        background-size: cover;
+    }
+    .ap{
+        text-shadow: 0 0 10px red;
+    }
+</style>
+<body>
+    <!-- navbar -->
+    <div class="container-fluid">
+        <div class="row bg-primary text-white na">
+            <div class="col-md-2">
+                    <h5 class="mt-4">Hospital Management</h5>
+            </div>
+            <div class="offset-md-6 col-md-3 text-right">
+                <h5 class="mt-4">Hello <b>{{user}}</b>,</h5>
+            </div>
+            <div class="col-md-1 mt-4">
+                <a href="{% url 'a_logout' %}" class="text-white"><b>Logout</b></a>
+            </div>
+        </div>
+        <h2 class="text-center display-3 mb-5 mt-3 text-white ap">Welcome to NTH Hospital</h2>
+        {% if appointment %}
+        <h3 class="text-dark">All Available Appointments Are...</h3>
+        <table class="table table-bordered table-hover text-center">
+            <thead class="bg-primary text-white">
+                <tr>
+                    <th>Name</th>
+                    <th>Age</th>
+                    <th>City</th>
+                    <th>Gender</th>
+                    <th>Blood Group</th>
+                    <th>Address</th>
+                    <th>Branch</th>
+                    <th>Date</th>
+                    <th>Actions</th>
+                </tr>
+            </thead>
+            <tbody class="text-white bg-success">
+                {% for i in appointment %}
+                <tr>
+                    <td>{{i.name}}</td>
+                    <td>{{i.age}}</td>
+                    <td>{{i.city}}</td>
+                    <td>{{i.gender}}</td>
+                    <td>{{i.blood_group}}</td>
+                    <td>{{i.address}}</td>
+                    <td>{{i.branch}}</td>
+                    <td>{{i.date}}</td>
+                    <td>
+                        <a href="{% url 'accept' i.id %}" class="btn btn-outline-warning btn-md mr-3">Accept</a>
+                        <a href="{% url 'reject' i.id %}" class="btn btn-outline-danger btn-md">Reject</a>
+                    </td>
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+        {% else %}
+        <h3>No Appointments are Available...</h3>
+        {% endif %}
+    </div>
+</body>
+</html>

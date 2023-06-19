@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    {% include 'cdnlines.html' %}
+    <title>Appointment Form</title>
+</head>
+<style>
+    .na{
+        height: 80px;
+    }
+    form{
+        border: 3px solid white;
+        box-shadow: 0 0 10px black;
+        border-radius: 10%;
+        padding: 20px;
+    }
+    input{
+        margin-bottom: 20px;
+    }
+    body{
+        margin-bottom: 200px;
+    }
+</style>
+<body>
+    <div class="container-fluid">
+        <div class="row bg-primary text-white na">
+            <div class="col-md-2">
+                    <h5 class="mt-4">NTH Hospital</h5>
+            </div>
+            <div class="offset-md-9 col-md-1 mt-4">
+                <a href="{% url 'patient_dashboard' %}" class="text-white"><h5>Go Back</h5></a>
+            </div>
+        </div>
+        <h2 class="text-center display-4 mt-5 mb-5">!!...We Care For You...!!</h2>
+        <div class="offset-md-3 col-md-6">
+            <form action="" method="post">
+                {% csrf_token %}
+                <h3 class="text-center">Hello <b>{{user}},</b></h3>
+                <h3 class="text-center mb-4">Please Enter Your Problem</h3>
+
+                <label><b>Name</b></label>
+                <input type="text" class="form-control" value="{{user}}" name='name'>
+
+                <label><b>Age</b></label>
+                <input type="number" class="form-control" placeholder="Enter Your Age" name="age">
+
+                <label><b>Select Your Gender</b></label>
+                <select class="form-control" name="gender">
+                    <option value="male">Male</option>
+                    <option value="female">Female</option>
+                    <option value="others">Others</option>
+                </select>
+
+                <label><b>Blood Group</b></label>
+                <input type="text" class="form-control" placeholder="Enter Your Blood Group" name="blood_group">
+
+                <label><b>Address</b></label>
+                <input type="text" class="form-control" placeholder="Enter your Address" name="address">
+
+                <label><b>City</b></label>
+                <input type="text" name="city" class="form-control" placeholder="Enter Your City">
+
+                <label><b>Select a Branch</b></label><br>
+                <input type="radio" name="branch" value="Ameerpet">
+                <label><b>Ameerpet</b></label>
+                <input type="radio" name="branch" value="KPHB" class="ml-5">
+                <label class="mr-5"><b>KPHB</b></label>
+                <input type="radio" name="branch" value="SR Nagar">
+                <label class="mr-5"><b>SR Nagar</b></label>
+                <input type="radio" name="branch" value="SR Nagar">
+                <label><b>Punjagutta</b></label><br>
+
+                <label><b>Date</b></label>
+                <input type="date" class="form-control" name="date">
+
+                <div class="text-center">
+                    <input type="submit" value="Submit" class="btn btn-outline-primary btn-lg mr-5">
+                    <input type="reset" value="Clear" class="btn btn-outline-danger btn-lg">
+                </div>
+            </form>
+            <h2 class="text-center display-4 mt-4">!!...Thank You...!!</h2>
+        </div>
+    </div>
+</body>
+</html>

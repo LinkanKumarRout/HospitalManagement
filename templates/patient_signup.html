@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    {% include 'cdnlines.html' %}
+    <title>Patient SignUp</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+</head>
+<style>
+    p{
+        font-family: Arial, Helvetica, sans-serif;
+        font-size: 20px;
+    }
+    h3{
+        margin-top: 20px;
+    }
+    form{
+        border: 2px solid white;
+        box-shadow: 0 0 10px blue;
+        padding: 20px;
+        border-radius: 5%;
+        margin-top: 80px;
+        margin-bottom: 20px;
+    }
+    .password-container{
+        width: 100%;
+        position: relative;
+    }
+    .password-container input[type="password"],
+    .password-container input[type="text"]{
+        width: 100%;
+        padding: 12px 36px 12px 12px;
+        box-sizing: border-box;
+    }
+    .fa-eye{
+        position: absolute;
+        top: 28%;
+        right: 4%;
+        cursor: pointer;
+    }
+    body{
+        background-image: url('static/Images/register.jpg');
+        background-size: cover;
+        background-repeat: no-repeat;
+    }
+    label{
+        color: white;
+    }
+</style>
+<body>
+    <!-- navbar -->
+    {% include 'navbar.html' %}
+    <!-- admin signup form -->
+    <div class="container">
+        <div class="offset-md-3 col-md-6">
+            <form method="post">
+                {% csrf_token %}
+                <h1 class="text-center text-white">Fill Patient Details...</h1>
+
+                <label for="first_name"><b>First Name :</b></label>
+                <input type="text" class="form-control" placeholder="First Name" name="first_name">
+
+                <label for="last_name"><b>Last Name :</b></label>
+                <input type="text" class="form-control" placeholder="Last Name" name="last_name">
+
+                <label for="email"><b>Email ID :</b></label>
+                <input type="email" class="form-control" placeholder="Email ID" name="email">
+
+                <label for="username"><b>UserName :</b></label>
+                <input type="text" class="form-control" placeholder="Username" name="username">
+
+                <label for="password1"><b>Password :</b></label>
+                <input type="password" class="form-control" placeholder="Password" name="password1">
+
+                <label class="mt-2 text-danger text-center">{{message1}}</label>
+
+                <label for="password2"><b>Confirm Password :</b></label>
+                <div class="password-container">
+                    <input type="password" class="form-control" placeholder="Confirm Password" name="password2" id="password">
+                    <i class="far fa-eye" id="eye"></i>
+                </div>
+
+                <script>
+                    const passwordInput = document.querySelector("#password")
+                    const eye = document.querySelector("#eye")
+
+                    eye.addEventListener("click", function(){
+                    this.classList.toggle("fa-eye-slash")
+                    const type = passwordInput.getAttribute("type") === "password" ? "text" : "password"
+                    passwordInput.setAttribute("type", type)
+                    })
+                </script>
+
+                <label class="mt-2 text-danger text-center">{{message}}</label>
+
+                <input type="submit" value="Submit" class="btn btn-primary btn-lg mt-2">
+                <div class="text-center mt-2">
+                    <p class="text-white">Already have an Account !! <a href="{% url 'p_login' %}">Login Here</a></p>
+                </div>
+            </form>
+        </div>
+    </div>
+</body>
+</html>

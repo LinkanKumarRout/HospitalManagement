@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    {% include 'cdnlines.html' %}
+    <title>Patient Login</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+</head>
+<style>
+    form{
+        border: 2px solid white;
+        box-shadow: 0 0 10px blue;
+        padding: 20px;
+        border-radius: 5%;
+        margin-top: 20px;
+        margin-bottom: 20px;
+    }
+    .password-container{
+        width: 100%;
+        position: relative;
+    }
+    .password-container input[type="password"],
+    .password-container input[type="text"]{
+        width: 100%;
+        padding: 12px 36px 12px 12px;
+        box-sizing: border-box;
+    }
+    .fa-eye{
+        position: absolute;
+        top: 28%;
+        right: 4%;
+        cursor: pointer;
+    }
+    .heading{
+        margin-top: 80px;
+        font-family: Arial, Helvetica, sans-serif;
+        color: white;
+        text-shadow: 0 0 10px blue;
+    }
+    body{
+        background-image: url('static/Images/login.jpg');
+        background-size: cover;
+        background-repeat: no-repeat;
+    }
+    label{
+        color: white;
+    }
+</style>
+<body>
+    {% include 'navbar.html' %}
+    <div class="container-fluid">
+        <h2 class="text-center display-3 heading">Welcome Patient</h2>
+        <div class="offset-md-4 col-md-4">
+            
+            <form action="" method="post">
+                {% csrf_token %}
+                <h3 class="text-center text-white">Patient Login Here...</h3>
+
+                <label for="username"><b>UserName :</b></label>
+                <input type="text" class="form-control" placeholder="Enter your username" name="username">
+
+                <label class="mt-2 text-danger">{{message}}</label>
+
+                <label for="password"><b>Password :</b></label>
+                <div class="password-container">
+                    <input type="password" class="form-control" placeholder="Enter your password" name="pass" id="password">
+                    <i class="far fa-eye" id="eye"></i>
+                </div>
+
+                <script>
+                    const passwordInput = document.querySelector("#password")
+                    const eye = document.querySelector("#eye")
+
+                    eye.addEventListener("click", function(){
+                    this.classList.toggle("fa-eye-slash")
+                    const type = passwordInput.getAttribute("type") === "password" ? "text" : "password"
+                    passwordInput.setAttribute("type", type)
+                    })
+                </script>
+
+                <div class="text-center">
+                    <input type="submit" value="LogIn" class="btn btn-primary btn-md mt-2">
+                    <a href="{% url 'patient' %}" class="btn btn-primary btn-md mt-2">Go Back</a>
+                </div>
+            </form>
+        </div>
+    </div>
+    {% include 'footer.html' %}
+</body>
+</html>
